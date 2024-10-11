@@ -40,21 +40,24 @@
             </div>
             <div class="grid grid-cols-2 gap-4">
                 @forelse ($categories as $itemCategory)
-                    <a href="category.html">
+                    <a href="{{ route('front.category', $itemCategory->slug) }}">
                         <div
                             class="flex items-center justify-between w-full rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
                             <div class="flex flex-col gap-[2px] px-[14px]">
-                                <h3 class="font-bold text-sm leading-[21px]">Lifestyle</h3>
-                                <p class="text-xs leading-[18px] text-[#878785]">223 Shoes</p>
+                                <h3 class="font-bold text-sm leading-[21px]">{{ $itemCategory->name }}</h3>
+                                <p class="text-xs leading-[18px] text-[#878785]">
+                                    {{ $itemCategory->shoes->count() }} Shoes
+                                </p>
                             </div>
                             <div class="flex shrink-0 w-20 h-[90px] overflow-hidden">
-                                <img src="assets/images/thumbnails/photo1.png"
+                                <img src="{{ Storage::url($itemCategory->icon) }}"
                                     class="w-full h-full object-cover object-left" alt="thumbnail">
                             </div>
                         </div>
                     </a>
 
                 @empty
+                    <p>Belum ada data terbaru</p>
                 @endforelse
 
 
@@ -109,31 +112,43 @@
             </div>
             <div class="swiper w-full overflow-hidden">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide !w-fit py-[2px]">
-                        <a href="details.html">
-                            <div
-                                class="flex flex-col shrink-0 w-[230px] h-full rounded-3xl gap-[14px] p-[10px] pb-4 bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
-                                <div class="w-[210px] h-[230px] rounded-3xl bg-[#D9D9D9] overflow-hidden">
-                                    <img src="assets/images/thumbnails/image1.png" class="w-full h-full object-cover"
-                                        alt="thumbnail">
-                                </div>
-                                <div class="flex flex-col gap-[14px] justify-between">
-                                    <div class="flex items-center justify-between gap-4">
-                                        <h3 class="font-bold leading-[20px]">Nike Zoom SD 4 Electric</h3>
-                                        <p class="font-bold text-sm leading-[21px] text-nowrap">Rp 128.000</p>
+
+                    @forelse($popularShoes as $itemPopularShoe)
+                        <div class="swiper-slide !w-fit py-[2px]">
+                            <a href="{{ route('front.details', $itemPopularShoe->slug) }}">
+                                <div
+                                    class="flex flex-col shrink-0 w-[230px] h-full rounded-3xl gap-[14px] p-[10px] pb-4 bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
+                                    <div class="w-[210px] h-[230px] rounded-3xl bg-[#D9D9D9] overflow-hidden">
+                                        <img src="{{ Storage::url($itemPopularShoe->thumbnail) }}"
+                                            class="w-full h-full object-cover" alt="thumbnail">
                                     </div>
-                                    <div class="flex items-center justify-between gap-2">
-                                        <div class="flex items-center gap-1">
-                                            <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px]"
-                                                alt="star">
-                                            <p class="font-semibold text-sm leading-[21px]">4.5</p>
+                                    <div class="flex flex-col gap-[14px] justify-between">
+                                        <div class="flex items-center justify-between gap-4">
+                                            <h3 class="font-bold leading-[20px]">{{ $itemPopularShoe->name }}</h3>
+                                            <p class="font-bold text-sm leading-[21px] text-nowrap">
+                                                Rp {{ }}
+                                            </p>
                                         </div>
-                                        <p class="text-sm leading-[21px] text-[#878785]">(18,485 reviews)</p>
+                                        <div class="flex items-center justify-between gap-2">
+                                            <div class="flex items-center gap-1">
+                                                <img src="assets/images/icons/Star 1.svg" class="w-[22px] h-[22px]"
+                                                    alt="star">
+                                                <p class="font-semibold text-sm leading-[21px]">4.5</p>
+                                            </div>
+                                            <p class="text-sm leading-[21px] text-[#878785]">(18,485 reviews)</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+
+                    @empty
+                        <p>belum ada data terbaru</p>
+                    @endforelse
+
+
+
+
                     <div class="swiper-slide !w-fit py-[2px]">
                         <a href="details.html">
                             <div
