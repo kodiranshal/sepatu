@@ -87,7 +87,8 @@
                         <label
                             class="relative flex justify-center min-w-[83px] w-fit rounded-2xl ring-1 ring-[#2A2A2A] p-[14px] transition-all duration-300 has-[:checked]:bg-white has-[:checked]:ring-2 has-[:checked]:ring-[#FFC700] hover:ring-2 hover:ring-[#FFC700]">
                             <input type="radio" data-size-id="{{ $itemSize->id }}" name="shoe_size"
-                                value="{{ $itemSize->size }}" class="absolute top-1/2 left-1/2 opacity-0" required>
+                                value="{{ $itemSize->size }}" value="EU40"
+                                class="absolute top-1/2 left-1/2 opacity-0" required>
                             <span class="font-semibold">{{ $itemSize->size }}</span>
                         </label>
                     @endforeach
@@ -101,7 +102,7 @@
                     <div class="flex items-center justify-between rounded-full bg-[#2A2A2A] p-[10px] pl-6">
                         <div class="flex flex-col gap-[2px]">
                             <p class="font-bold text-[20px] leading-[30px] text-white">
-                                Rp {{ number_format($shoe->price, 0, ',', ',') }}
+                                Rp {{ number_format($shoe->price, 0, ',', '.') }}
                             </p>
                             <p class="text-sm leading-[21px] text-[#878785]">One pair shoes</p>
                         </div>

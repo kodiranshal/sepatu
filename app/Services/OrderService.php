@@ -34,7 +34,7 @@ class OrderService
         $orderData = [
             'shoe_size' => $data['shoe_size'],
             'size_id' => $data['size_id'],
-            'show_id' => $data['shoe_id'],
+            'shoe_id' => $data['shoe_id'],
         ];
         $this->orderRepository->saveToSession($orderData);
     }
