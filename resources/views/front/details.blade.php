@@ -66,18 +66,17 @@
         </section>
         <div id="brand" class="flex items-center gap-4 px-4">
             <div class="w-[70px] h-[70px] rounded-[20px] bg-white overflow-hidden">
-                <img src="{{ asset('assets/images/logos/nike.svg') }}" class="w-full h-full object-contain"
-                    alt="brand logo">
+                <img src="{{ Storage::url($shoe->brand->logo) }}" class="w-full h-full object-contain" alt="brand logo">
             </div>
             <div class="flex flex-col">
                 <h2 class="text-sm leading-[21px]">Brand</h2>
                 <div class="flex items-center gap-1">
                     <h3 class="font-bold text-lg leading-[27px]">{{ $shoe->brand->name }}</h3>
-                    <img src="{{ Storage::url($shoe->brand->logo) }}" class="w-5 h-5" alt="icon">
+                    <img src="{{ asset('assets/images/icons/arrow-left-svg') }}" class="w-5 h-5" alt="icon">
                 </div>
             </div>
         </div>
-        <form action="{{ route('front.save_order', $shoe->slug) }}" method="POST"class="flex flex-col gap-3">
+        <form action="{{ route('front.save_order', $shoe->slug) }}" method="POST" class="flex flex-col gap-3">
             @csrf
             <div class="flex flex-col gap-3 px-4">
                 <h2 class="font-bold">Choose Size</h2>
